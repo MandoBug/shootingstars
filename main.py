@@ -10,7 +10,7 @@ pygame.display.set_caption("Meteor Simulation - 2D")
 clock = pygame.time.Clock()
 FPS = 60
 DT = 1 / FPS
-g = 9.81  # Gravity
+g = 9.81  # Gravity 
 
 # Create a meteor
 meteor = Meteor([WIDTH//2, 100], [50, 0])  # initial x velocity 50 px/sec
