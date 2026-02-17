@@ -93,8 +93,7 @@ class Atmosphere:
 
 # ============================================================================
 # TESTING (run this file directly to test)
-# ============================================================================
-
+# Use python atmosphere.py (I added some data points so you can see whats happening in numbers)
 if __name__ == "__main__":
     """Test the atmosphere model."""
     
