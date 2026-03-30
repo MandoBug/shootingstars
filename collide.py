@@ -1,10 +1,3 @@
-"""
-Meteor Collision Simulation
-
-Two meteors on collision course - close-up view.
-Watch them approach, collide, and fragment!
-"""
-
 import numpy as np
 
 
@@ -17,22 +10,19 @@ def simulate_meteor_collision(duration=10.0, dt=0.01, output_every=5):
         dt: Timestep (seconds)
         output_every: Output every N steps
     """
-    print("="*70)
-    print("METEOR COLLISION SIMULATION")
-    print("="*70)
     
     # Meteor properties
     # Meteor 1: Larger, slower
-    m1 = 1000.0  # 1 ton
-    r1 = 1.0     # 1 meter radius
-    pos1 = np.array([-2500.0, 0.0, 0.0])  # Start 2.5km away on left
-    vel1 = np.array([400.0, 0.0, 0.0])    # Moving right at 400 m/s
+    m1 = 1000.0 # 1 ton
+    r1 = 1.0 # radius = 1m
+    pos1 = np.array([-2500.0, 0.0, 0.0]) # Start 2.5km away on left
+    vel1 = np.array([400.0, 0.0, 0.0]) # Moving right at 400 m/s
     
     # Meteor 2: Smaller, faster
-    m2 = 100.0   # 100 kg
-    r2 = 0.5     # 0.5 meter radius
-    pos2 = np.array([2500.0, 0.0, 0.0])   # Start 2.5km away on right
-    vel2 = np.array([-600.0, 0.0, 0.0])   # Moving left at 600 m/s
+    m2 = 100.0 # 100 kg
+    r2 = 0.5 # 0.5 meter radius
+    pos2 = np.array([2500.0, 0.0, 0.0]) # Start 2.5km away on right
+    vel2 = np.array([-600.0, 0.0, 0.0]) # Moving left at 600 m/s
     
     print("\nMeteor 1:")
     print(f"  Mass: {m1:.0f} kg")
@@ -74,7 +64,7 @@ def simulate_meteor_collision(duration=10.0, dt=0.01, output_every=5):
                 distance = np.linalg.norm(pos2 - pos1)
                 
                 if distance <= collision_distance:
-                    print(f"\n💥 COLLISION at t={time:.3f}s!")
+                    print(f"\nCollision at t={time:.3f}s!")
                     collision_occurred = True
                     collision_time = time
                     
@@ -197,37 +187,12 @@ def simulate_meteor_collision(duration=10.0, dt=0.01, output_every=5):
                     else:
                         print(f"  t={time:.2f}s ({progress:.0f}%) | {len(fragment_positions)} fragments")
     
-    print(f"\n✓ Simulation complete! ({frame} frames)")
-    print(f"✓ Output: meteor_collision.dump")
+    print(f"\nSimulation complete! ({frame} frames)")
+    print(f"Output: meteor_collision.dump")
     
     if collision_occurred:
-        print(f"\n💥 Collision occurred at t={collision_time:.3f}s")
+        print(f"\nCollision occurred at t={collision_time:.3f}s")
         print(f"   Created {len(fragment_positions)} fragments")
-    
-    print(f"\n{'='*70}")
-    print("OVITO VISUALIZATION:")
-    print("="*70)
-    print("\n1. Import: meteor_collision.dump")
-    print("\n2. Particle settings:")
-    print("   • Shape: Sphere")
-    print("   • Radius: 'radius'")
-    print("   • Scaling: 1.0 (no scaling needed!)")
-    print("\n3. Color by type:")
-    print("   • Add modifier → Color Coding")
-    print("   • Property: type")
-    print("   • Type 1: Blue (large meteor)")
-    print("   • Type 2: Red (small meteor)")
-    print("   • Type 3: Orange (large fragments)")
-    print("   • Type 4: Yellow (small debris)")
-    print("\n4. Add trails:")
-    print("   • Add modifier → Generate Trajectory Lines")
-    print("   • Shows path of each particle")
-    print("\n5. Press SPACE and watch:")
-    print("   • Meteors approach")
-    print("   • Collision!")
-    print("   • Fragments scatter")
-    print("\nPerfect scale - everything visible with NO scaling!")
-    print("="*70 + "\n")
 
 
 if __name__ == "__main__":

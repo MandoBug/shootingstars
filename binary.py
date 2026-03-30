@@ -1,10 +1,3 @@
-"""
-Binary Star System Simulation
-
-Two massive objects orbiting their common center of mass.
-Perfect for OVITO - similar scales, easy to see!
-"""
-
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -13,22 +6,21 @@ def create_binary_system():
     """
     Create a binary star/planet system.
     
-    Returns:
-        positions, velocities, masses, radii for both objects
+    Returns positions, velocities, masses, radii for both objects
     """
     # Physical constants
     G = 6.67430e-11  # Gravitational constant
     
     # System parameters - let's make "stars" that are planet-sized for easier visualization
-    m1 = 5.972e24  # Mass of object 1 (Earth-like)
-    m2 = 7.342e22   # Mass of object 2 (Moon-like)
+    m1 = 5.972e24 # Mass of object 1 (Earth-like)
+    m2 = 7.342e22 # Mass of object 2 (Moon-like)
     
-    r1_physical = 6.371e6   # Radius of object 1 (m)
-    r2_physical = 1.737e6   # Radius of object 2 (m)
+    r1_physical = 6.371e6 # Radius of object 1 (m)
+    r2_physical = 1.737e6 # Radius of object 2 (m)
     
-    # For visualization, we'll scale these up significantly
-    r1_visual = 50000  # 50km for visualization
-    r2_visual = 20000  # 20km for visualization
+    # scale for visualization
+    r1_visual = 50000 # 50km for visualization
+    r2_visual = 20000 # 20km for visualization
     
     # Orbital parameters
     separation = 384400e3 / 100  # 1/100th of Moon-Earth distance for faster orbit
@@ -120,7 +112,6 @@ def simulate_binary_system(duration=86400, dt=60.0, output_every=10):
                 box_min = all_pos.min(axis=0) - margin
                 box_max = all_pos.max(axis=0) + margin
                 
-                # Write LAMMPS format
                 f.write("ITEM: TIMESTEP\n")
                 f.write(f"{step}\n")
                 f.write("ITEM: NUMBER OF ATOMS\n")
@@ -149,24 +140,8 @@ def simulate_binary_system(duration=86400, dt=60.0, output_every=10):
                     print(f"  Step {step}/{n_steps} ({progress:.1f}%) | "
                           f"sep={current_sep/1000:.0f}km")
     
-    print(f"\n✓ Simulation complete!")
-    print(f"✓ Output: binary_stars.dump ({frame} frames)")
-    print(f"\n{'='*70}")
-    print("OVITO VISUALIZATION:")
-    print("="*70)
-    print("\n1. Import: binary_stars.dump")
-    print("\n2. Particle settings:")
-    print("   • Shape: Sphere")
-    print("   • Radius: 'radius'")
-    print("   • Scaling: 1.0 (objects are already visible size!)")
-    print("\n3. Color by type:")
-    print("   • Add modifier → Color Coding")
-    print("   • Property: type")
-    print("   • Type 1 (larger object): Blue")
-    print("   • Type 2 (smaller object): Orange")
-    print("\n4. Press SPACE - watch them orbit!")
-    print("\nNOTE: No extreme scaling needed - objects are similar size!")
-    print("="*70 + "\n")
+    print(f"\n Simulation Finished")
+    print(f"Output: binary_stars.dump ({frame} frames)")
 
 
 if __name__ == "__main__":
